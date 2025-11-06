@@ -76,7 +76,7 @@ export default function Carousel() {
         const getBgImageUrl = (index: number) => {
             const realIndex = getRealIndex(index);
             const targetImages = mediaQuery.matches ? pcBgImages : spBgImages;
-            return `url('${targetImages[realIndex]}')`;
+            return `url('/${targetImages[realIndex]}')`;
         };
 
         const updateBackgroundImage = (newIndex: number) => {
@@ -231,7 +231,7 @@ export default function Carousel() {
                             <p>こうやって無心に捏ねくり回していると生を実感できるのだよ。あぁ！このパーツも潰してくれないか？</p>
                         </div>
                         <div className="slide-image">
-                            <img src="/png/dai3.png" alt="博士のキャラクター画像" />
+                            <img src="/png/yakushihiokuniarikonmeiomareisucocoro.png" alt="博士のキャラクター画像" />
                         </div>
                     </li>
                      <li className="slide-inner"> {/* 例: 5つ目のスライド */}
