@@ -101,44 +101,45 @@ export default function Carousel() {
                 isTransitioning = false;
             }, TRANSITION_DURATION);
         };
-        
         const checkLoop = (targetIndex: number) => {
             let newIndex = targetIndex;
-            const totalSlides = allSlides.length;
-            
-            // 最後のスライドブロックの端に到達した場合
-            if (targetIndex >= totalSlides - slideCount) {
-                newIndex = slideCount; 
-            } 
-            // 最初のスライドブロックの端に到達した場合
-            else if (targetIndex < slideCount) {
-                newIndex = totalSlides - (slideCount * 2); 
-            }
-            
-            if (newIndex !== targetIndex) {
-                carouselList.style.scrollBehavior = 'auto'; 
-                
-                allSlides[newIndex].scrollIntoView({
-                    inline: 'center'
-                });
+    const totalSlides = allSlides.length;
 
-                setTimeout(() => {
-                    carouselList.style.scrollBehavior = 'smooth';
-                }, 50);
-                
-                return newIndex;
-            }
-            
-            return targetIndex;
-        };
+    // 最後のスライドブロックの端に到達した場合
+    if (targetIndex >= totalSlides - slideCount) {
+        newIndex = slideCount; // 中央ブロックの先頭 (Index 5)
+    }
+    // 最初のスライドブロックの端に到達した場合
+    else if (targetIndex < slideCount) {
+        newIndex = totalSlides - (slideCount * 2); // 中央ブロックの末尾 (Index 9)
+    }
+    if (newIndex !== targetIndex) {
+        // 瞬間移動時には一時的にスムーススクロールを無効化
+        carouselList.style.scrollBehavior = 'auto'; 
 
+        // 瞬間移動の実行
+        allSlides[newIndex].scrollIntoView({
+            inline: 'center'
+        });
+
+        // 瞬間移動が完了した後、スクロールを 'smooth' に戻す
+        // ブラウザが 'auto' の状態を確実に認識できるようにわずかな遅延を入れる
+        setTimeout(() => {
+            carouselList.style.scrollBehavior = 'smooth';
+        }, 50);
+
+        return newIndex;
+    }
+
+    return targetIndex;
+};
         const goToSlide = (direction: number) => {
             let targetIndex = currentIndex + direction;
-            
+
             if (isTransitioning) return;
-            
-            updateBackgroundImage(targetIndex); 
-            
+
+            updateBackgroundImage(targetIndex);
+
             allSlides[targetIndex].scrollIntoView({
                 behavior: 'smooth',
                 inline: 'center'
