@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@charset "utf-8";
+
 /* Reset box-model and set borders */
 /* ============================================ */
 
@@ -413,9 +418,6 @@ th {
 }
 /*リセットcssおわり*/
 
-
-@import "tailwindcss";
-@charset "utf-8";
 /* index.css */
 
 /* ------------------------------------ */
@@ -596,11 +598,6 @@ ul.slide-item::-webkit-scrollbar {
         background-color: transparent;
     }
     
-    .candle-section::before {
-        /* 初期背景をPC版に設定 */
-        background-image: url('/png/C_sectionback_pc1.png');
-    }
-    
     /* ボタンの配置 */
     .prev-button {
         left: 50px;
@@ -608,6 +605,12 @@ ul.slide-item::-webkit-scrollbar {
     .next-button {
         right: 50px;
     }
+    .candle-section {
+        /* PC版は初期値としてPC用の画像URL変数を設定 */
+        --current-bg-url: url('/png/C_sectionback_pc1.png');
+        --next-bg-url: url('/png/C_sectionback_pc1.png');
+    }
+
 }
 
 /* ------------------------------------ */
