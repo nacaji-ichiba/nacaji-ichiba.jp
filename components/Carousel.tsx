@@ -197,11 +197,6 @@ export default function Carousel() {
             <div className="carousel-wrapper">
                 <button ref={prevButtonRef} className="nav-button prev-button">◀</button>
                 <ul ref={carouselListRef} className="slide-item">
-                    {/* 🚨 ここに、元のHTMLにあった 
-                         <li class="slide-inner">...</li> を 
-                         <li className="slide-inner">...</li> に書き換えて、5つ分記述してください。
-                         ※ JSロジックで複製されるため、ここでは「オリジナル」の5つだけ記述します。
-                    */}
                     <li className="slide-inner"> 
                         <div className="slide-text">
                             <h2>アカ</h2>
@@ -221,32 +216,31 @@ export default function Carousel() {
                             <img src="/png/daidai.png" alt="ダイダイのキャラクター画像" />
                         </div>
                     </li>
-                    {/* 他の3つのスライドもここに続けて記述してください */}
                     <li className="slide-inner"> {/* 例: 3つ目のスライド */}
                         <div className="slide-text">
-                            <h2>...</h2>
-                            <p>...</p>
+                            <h2>マツムシ</h2>
+                            <p>自分に厳しく他人に厳しく冷徹に。イライラさせるんじゃありません。大事な思い出？捨てなさい。</p>
                         </div>
                         <div className="slide-image">
-                            <img src="/png/dai2.png" alt="..." />
+                            <img src="/png/matsumushi.png" alt="博士のキャラクター画像" />
                         </div>
                     </li>
                      <li className="slide-inner"> {/* 例: 4つ目のスライド */}
                         <div className="slide-text">
-                            <h2>...</h2>
-                            <p>...</p>
+                            <h2>やくし秘奥にあり渾名を磨礪す心</h2>
+                            <p>こうやって無心に捏ねくり回していると生を実感できるのだよ。あぁ！このパーツも潰してくれないか？</p>
                         </div>
                         <div className="slide-image">
-                            <img src="/png/dai3.png" alt="..." />
+                            <img src="/png/dai3.png" alt="博士のキャラクター画像" />
                         </div>
                     </li>
                      <li className="slide-inner"> {/* 例: 5つ目のスライド */}
                         <div className="slide-text">
-                            <h2>...</h2>
-                            <p>...</p>
+                            <h2>シリー</h2>
+                            <p>流石に12本もあったら何本か溶けても問題なさそうだよねぇ。でもまだまだ足りないんだぁ、ごめんね。</p>
                         </div>
                         <div className="slide-image">
-                            <img src="/png/dai4.png" alt="..." />
+                            <img src="/png/silly.png" alt="シリーのキャラクター画像" />
                         </div>
                     </li>
                 </ul>
