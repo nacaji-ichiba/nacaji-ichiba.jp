@@ -111,7 +111,7 @@ export default function Carousel() {
     }
     // 最初のスライドブロックの端に到達した場合
     else if (targetIndex < slideCount) {
-        newIndex = totalSlides - (slideCount * 2); // 中央ブロックの末尾 (Index 9)
+        newIndex = totalSlides - (slideCount - 1); // 中央ブロックの末尾 (Index 9)
     }
     if (newIndex !== targetIndex) {
         // 瞬間移動時には一時的にスムーススクロールを無効化
