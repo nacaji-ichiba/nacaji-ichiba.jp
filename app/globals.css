@@ -413,6 +413,220 @@ th {
 }
 /*リセットcssおわり*/
 
-body {
-  background: linear-gradient(70deg, #cfd9df, #e2ebf0);
+
+@import "tailwindcss";
+@charset "utf-8";
+/* index.css */
+
+/* ------------------------------------ */
+/* 基本スタイル (モバイルファースト) */
+/* ------------------------------------ */
+/* 768px以下のデフォルト設定 (SPサイズ) */
+
+	body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
+	body {
+	background: linear-gradient(70deg, #cfd9df, #e2ebf0);
+}
+
+.slide-image img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+
+.candle-section {
+    width: 100%;
+    max-width: 100%; 
+    
+    background-image: none; 
+    clip-path: none; 
+    -webkit-clip-path: none;
+    
+    color: #333; 
+    padding: 38% 0px;
+    margin-top: 0; 
+    position: relative; 
+    z-index: 10;
+    overflow: hidden; 
+
+    /* JSが設定するCSS変数の初期値（SP版） */
+    --current-bg-url: url('/png/C_sectionback_sp1.png');
+    --next-bg-url: url('/png/C_sectionback_sp1.png');
+    --bg-opacity-1: 1; 
+    --bg-opacity-2: 0;
+}
+
+/* 擬似要素（::before, ::after）で背景画像をレイヤー化し、フェードに対応 */
+.candle-section::before,
+.candle-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: 1; 
+    transition: opacity 0.5s ease; /* フェードトランジション */
+}
+.candle-section::before {
+    background-image: var(--current-bg-url);
+    opacity: var(--bg-opacity-1); 
+}
+.candle-section::after {
+    background-image: var(--next-bg-url);
+    opacity: var(--bg-opacity-2); 
+}
+
+/* ----------------------*
+ * カルーセル
+ * ----------------------*/
+.carousel-wrapper {
+    position: relative; 
+    width: 100%; 
+    z-index: 20; 
+}
+
+ul.slide-item {
+    list-style: none;
+    padding: 0;
+    margin: 0; 
+
+    display: flex; 
+    gap: 120px;
+    
+    overflow-x: scroll; 
+    scroll-snap-type: x mandatory;
+    scroll-snap-stop: always;
+    scroll-behavior: smooth;
+    
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    width: 100%;
+}
+/* スクロールバー非表示 (Webkit系) */
+ul.slide-item::-webkit-scrollbar {
+    display: none; 
+}
+
+/* ------------------------------------ */
+/* SP版レイアウト (768px以下) */
+/* ------------------------------------ */
+@media (max-width: 768px) {
+    /* SP版 li.slide-inner は画面幅の90%を使用し、縦積み */
+    li.slide-inner {
+        width: 90vw;
+        flex-direction: column; 
+        text-align: center;
+        scroll-snap-align: center; 
+        flex-shrink: 0; 
+    }
+    
+    .slide-item {
+        /* SP版の中央スナップ調整 */
+        scroll-padding-left: calc(50% - 45vw);
+        scroll-padding-right: calc(50% - 45vw);
+    }
+    
+    /* テキストと画像の重ね合わせ */
+    .slide-inner {
+        position: relative;
+        min-height: 400px; 
+        justify-content: center; 
+    }
+    .slide-text {
+        width: 80%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 30;
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 15px;
+        border-radius: 5px;
+    }
+    .slide-image {
+        width: 100%;
+        order: 2;
+    }
+}
+
+
+/* ------------------------------------ */
+/* PC版レイアウト (769px以上) */
+/* ------------------------------------ */
+@media (min-width: 769px) { 
+    /* PCでのスライド幅を設定 */
+    li.slide-inner {
+        width: 900px; 
+        max-width: 90vw;
+        scroll-snap-align: center; 
+        display: flex;
+        align-items: center;
+        flex-direction: row; 
+        justify-content: space-between;
+        flex-shrink: 0;
+    }
+    
+    .slide-item {
+        /* PC版の中央スナップ調整：li.slide-inner幅の半分 (450px) を想定 */
+        scroll-padding-left: calc(50% - 450px);
+        scroll-padding-right: calc(50% - 450px);
+    }
+
+    .slide-image {
+        width: 50%;
+        order: 1; 
+    }
+    
+    .slide-text {
+        width: 40%;
+        text-align: left;
+        order: 2; 
+        position: static;
+        transform: none;
+        background-color: transparent;
+    }
+    
+    .candle-section::before {
+        /* 初期背景をPC版に設定 */
+        background-image: url('/png/C_sectionback_pc1.png');
+    }
+    
+    /* ボタンの配置 */
+    .prev-button {
+        left: 50px;
+    }
+    .next-button {
+        right: 50px;
+    }
+}
+
+/* ------------------------------------ */
+/* ナビゲーションボタンの配置 (共通) */
+/* ------------------------------------ */
+.nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50; 
+    
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+.prev-button { left: 20px; }
+.next-button { right: 20px; }
