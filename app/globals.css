@@ -674,11 +674,41 @@ ul.slide-item::-webkit-scrollbar {
 /* 「とは？」へのアニメーション適用 */
 .animated-text.start-animate.ts1 {
     animation: fadeInUp 0.5s forwards;
-    animation-delay: 0.5s; /* CANDLE GIRLS のアニメーション終了後0.5秒ディレイ */
+    animation-delay: 1.7s; /* CANDLE GIRLS のアニメーション終了後0.5秒ディレイ */
 }
 
 /* 本文へのアニメーション適用 */
 .animated-text.start-animate.ts2-delay {
     animation: fadeInUp 0.5s forwards;
-    animation-delay: 1.5s; /* 「とは？」の浮き上がり開始から1秒後 (0.5s + 1.0s) */
+    animation-delay: 4s; /* 「とは？」の浮き上がり開始から1秒後 (0.5s + 1.0s) */
+}
+
+/* candlegirlsの文字 */
+section.section1 {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 90%;
+    padding: 10%;
+}
+
+.titleN {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: fit-content;
+    margin: auto;
+  }
+
+h2.animated-title.start-animate {
+    font-size: 3rem;
+    margin: 0;
+}
+
+p.ts.animated-text.ts1.start-animate {
+    white-space: nowrap;
+    position: absolute;
+    bottom: 3px;
+    right: -80px;
+    font-size: 1.5rem;
 }

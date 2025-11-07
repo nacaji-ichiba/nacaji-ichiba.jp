@@ -10,26 +10,28 @@ const renderTitle = (title: string) => {
   ));
 };
 
-export default function Section1() {
-  
-  // ページロード時にアニメーションをトリガー
-  useEffect(() => {
-    // DOM要素は自身のコンポーネントがマウントされると確実にある
-    const title = document.querySelector('.animated-title');
-    if (title) { 
-        title.classList.add('start-animate');
-    }
+// 🚨 props としてアニメーション開始フラグを受け取るように変更
+export default function Section1({ startAnimation }: { startAnimation: boolean }) {
 
-    const ts1 = document.querySelector('.animated-text.ts1');
-    if (ts1) { 
-        ts1.classList.add('start-animate');
-    }
+    useEffect(() => {
+    // 🚨 startAnimation フラグが true になったらアニメーションを開始する
+    if (startAnimation) {
+        const title = document.querySelector('.animated-title');
+        if (title) { 
+            title.classList.add('start-animate');
+        }
 
-    const ts2 = document.querySelector('.animated-text.ts2-delay');
-    if (ts2) { 
-        ts2.classList.add('start-animate');
+        const ts1 = document.querySelector('.animated-text.ts1');
+        if (ts1) { 
+            ts1.classList.add('start-animate');
+        }
+
+        const ts2 = document.querySelector('.animated-text.ts2-delay');
+        if (ts2) { 
+            ts2.classList.add('start-animate');
+        }
     }
-  }, []); // ページロード時に一度だけ実行
+  }, [startAnimation]); // startAnimation が変更されたときに実行
 
   return (
       <section className="section1">
@@ -41,5 +43,6 @@ export default function Section1() {
           尖った熱意に溶かされそうなロウソクの総称。頭の導火線じゃない、心の導火線に火をつけるのだ！
         </p>
       </section>
+
   );
 }
