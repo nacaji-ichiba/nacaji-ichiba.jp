@@ -42,10 +42,12 @@ export default function CandleOverlay() {
         // TODO: CSSで円形の演出を実装
 
         // 3. 演出終了後の処理を遅延実行 (2.5秒後)
+       // clip-path のトランジションが 1.5秒なので、
+        // 1.5秒 + 0.5秒の余裕 = 2000ms (2秒) 後にサイト本体をロードするのが自然です。
         setTimeout(() => {
-            setIsSiteVisible(true); // サイト本体を表示
+            setIsSiteVisible(true); // サイト本体を表示 (オーバーレイをDOMから削除)
             setStartAnimation(true); // Section1 のアニメーション開始をトリガー
-        }, 2500); // 2.5秒後に実行
+        }, 2000); // 🚨 修正: 2.5秒から 2.0秒に変更
     };
     
     // 演出終了後の描画 (サイト本体を表示)
@@ -64,23 +66,7 @@ export default function CandleOverlay() {
             {!isLit && <p className="sound-warning">※このサイトでは音が鳴ります</p>}
             
             {/* CSSはglobals.cssに記述することを推奨しますが、今回はそのまま残します */}
-            <style jsx global>{`
-                .overlay {
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100vw;
-                    height: 100vh;
-                    background: black;
-                    z-index: 1000;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    transition: opacity 1s;
-                }
-                /* ... 演出用のCSSクラス (.lit) はglobals.cssに定義 ... */
-            `}</style>
+           
         </div>
     );
 }
