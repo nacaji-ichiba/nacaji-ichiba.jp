@@ -719,3 +719,55 @@ p.ts.animated-text.ts1.start-animate {
     right: -80px;
     font-size: 1.5rem;
 }
+/* クリック演出オーバーレイ (CandleOverlay.tsx) */
+/* ------------------------------------ */
+
+.overlay {
+    /* (CandleOverlay.tsx 内で定義済みのスタイル) */
+    cursor: pointer; /* クリック可能であることを示す */
+    transition: clip-path 2.5s ease-in-out, opacity 1s ease-out; /* 演出時間とフェード時間 */
+}
+
+.overlay img {
+    /* 蝋燭の画像のサイズ調整（適宜調整してください） */
+    width: 200px;
+    height: auto;
+    max-width: 80%;
+    transition: opacity 1s ease-in-out; 
+}
+
+.overlay.lit img {
+    /* 点火された蝋燭が徐々に消える */
+    opacity: 0;
+    transition-delay: 1.5s; /* 演出の途中からフェードアウトを開始 */
+}
+
+.sound-warning {
+    color: white;
+    margin-top: 20px;
+    font-size: 1rem;
+    transition: opacity 0.5s;
+}
+
+.overlay.lit .sound-warning {
+    display: none; /* 点火後は警告文をすぐに隠す */
+}
+/* app/globals.css */
+
+/* 演出：黒いオーバーレイを円形に切り抜く */
+.overlay.lit {
+    /* * clip-path: circle(半径 at X座標 Y座標);
+     * 初期状態の半径 0% から、一瞬で超巨大な円 (200%) に広げることで、
+     * 黒いオーバーレイが中心から消えていくように見せる。
+     */
+    clip-path: circle(200% at 50% 50%);
+    
+    /* 演出が終わった後、setTimeout で isSiteVisible=true になり、
+       オーバーレイ要素自体がDOMから削除されます。 */
+    
+    /* サイトが判読可能になる演出として、オーバーレイを半透明にする（オプション） */
+    /* background: rgba(0, 0, 0, 0.5); */ 
+}
+
+/* 演出が完了した後、CandleOverlay.tsx で isSiteVisible が true になると、
+   この要素は消え、Section1 のアニメーションが開始します。 */
