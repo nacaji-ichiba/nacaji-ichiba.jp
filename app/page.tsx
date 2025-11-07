@@ -1,12 +1,27 @@
 import Carousel from '@/components/Carousel';
 
+// CANDLE GIRLS を一文字ずつ span でラップする関数
+const renderTitle = (title: string) => {
+  return title.split('').map((char, index) => (
+    <span key={index} className="char" style={{ animationDelay: `${index * 0.1}s` }}>
+      {char === ' ' ? '\u00A0' : char} {/* スペースは &nbsp; に変換 */}
+    </span>
+  ));
+};
+
 export default function Home() {
+
   return (
     <main>
       {/* 1. 上部の静的なコンテンツ */}
       <section className="section1">
-        <h2>キャンドルの物語</h2>
-        <p>溶けゆく時間と共に、柔らかな光が空間を包みます。</p>
+        <div className="titleN">
+         <h2 className="animated-title">{renderTitle("CANDLE GIRLS")}</h2>
+          <p className="ts animated-text ts1">とは？</p>
+        </div>
+        <p className="ts2 animated-text ts2-delay">
+          尖った熱意に溶かされそうなロウソクの総称。頭の導火線じゃない、心の導火線に火をつけるのだ！
+        </p>
       </section>
 
       {/* 2. SVG (これはカルーセル外の要素なので残します) */}

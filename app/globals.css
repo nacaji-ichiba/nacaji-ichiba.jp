@@ -636,3 +636,49 @@ ul.slide-item::-webkit-scrollbar {
 
 .prev-button { left: 20px; }
 .next-button { right: 20px; }
+
+/* 浮き上がりアニメーションの定義 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section1 {
+    /* 必要に応じて背景やpaddingなどを調整 */
+}
+
+/* CANDLE GIRLS の各文字の初期状態 */
+.animated-title .char {
+    display: inline-block; /* spanにtransformを適用するため */
+    opacity: 0; /* 初期状態は非表示 */
+}
+
+/* CANDLE GIRLS 以外の要素の初期状態 */
+.animated-text {
+    opacity: 0; /* 初期状態は非表示 */
+    /* JSでアニメーション開始時に visibility: visible; を適用してもよいが、
+       ここでは opacity: 0 で初期位置を保ちます */
+}
+
+/* CANDLE GIRLS の各文字へのアニメーション適用 */
+.animated-title.start-animate .char {
+    animation: fadeInUp 0.5s forwards; /* 0.5秒かけて浮き上がる */
+}
+
+/* 「とは？」へのアニメーション適用 */
+.animated-text.start-animate.ts1 {
+    animation: fadeInUp 0.5s forwards;
+    animation-delay: 0.5s; /* CANDLE GIRLS のアニメーション終了後0.5秒ディレイ */
+}
+
+/* 本文へのアニメーション適用 */
+.animated-text.start-animate.ts2-delay {
+    animation: fadeInUp 0.5s forwards;
+    animation-delay: 1.5s; /* 「とは？」の浮き上がり開始から1秒後 (0.5s + 1.0s) */
+}
