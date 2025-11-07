@@ -58,7 +58,7 @@ export default function CandleOverlay() {
     return (
         <div className={`overlay ${isLit ? 'lit' : ''}`} onClick={handleClick}>
             <img 
-                src={isLit ? '/path/to/lit_candle.png' : '/path/to/unlit_candle.png'} 
+                src={isLit ? '/png/lit_candle.png' : '/png/unlit_candle.png'} 
                 alt="蝋燭"
             />
             {!isLit && <p className="sound-warning">※このサイトでは音が鳴ります</p>}
