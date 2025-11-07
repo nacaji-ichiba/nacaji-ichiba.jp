@@ -189,23 +189,7 @@ export default function Carousel() {
              prevButtonRef.current?.removeEventListener('click', handlePrevClick);
              nextButtonRef.current?.removeEventListener('click', handleNextClick);
         };
-        
-   // アニメーションのトリガー（section1の要素を取得してクラスを追加）
-const title = document.querySelector('.animated-title');
-if (title) { 
-    title.classList.add('start-animate');
-}
 
-const ts1 = document.querySelector('.animated-text.ts1');
-if (ts1) { 
-    ts1.classList.add('start-animate');
-}
-
-const ts2 = document.querySelector('.animated-text.ts2-delay');
-if (ts2) { 
-    ts2.classList.add('start-animate');
-}
-    
     }, []); // ページロード時に一度だけ実行
 
     return (
