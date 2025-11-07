@@ -561,6 +561,10 @@ ul.slide-item::-webkit-scrollbar {
         width: 100%;
         order: 2;
     }
+
+    img.jsx-c882020165befd44 {
+    width: 200px;
+}
 }
 
 
@@ -612,6 +616,9 @@ ul.slide-item::-webkit-scrollbar {
         --current-bg-url: url('/png/C_sectionback_pc1.png');
         --next-bg-url: url('/png/C_sectionback_pc1.png');
     }
+    img.jsx-c882020165befd44 {
+    width: 500px;
+}
 
 }
 
