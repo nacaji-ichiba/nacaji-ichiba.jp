@@ -724,12 +724,9 @@ p.ts.animated-text.ts1.start-animate {
 
 .overlay {
     cursor: pointer;
-    /* 🚨 修正: 初期 clip-path: circle(0% at 50% 50%); は削除！ */
-    
     /* 🚨 修正: transition に clip-path を定義。初期状態は全画面を覆う */
     transition: clip-path 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), /* イージング */
                 opacity 1s ease-out;
-                
     position: fixed;
     top: 0;
     left: 0;
@@ -746,11 +743,13 @@ p.ts.animated-text.ts1.start-animate {
        clip-path のデフォルト値を最大値に近い値（例: 100%）に設定することで、
        初期状態のトランジションを無効化します。*/
     clip-path: circle(150% at 50% 50%); /* 画面全体を覆う大きさ */
+    -webkit-clip-path: circle(150% at 50% 50%); 
 }
 
 /* 演出：黒いオーバーレイを円形に切り抜く */
 .overlay.lit {
     /* クリック時に円を広げ、下のサイトを見せる */
+    -webkit-clip-path: circle(200% at 50% 50%);
     clip-path: circle(200% at 50% 50%); 
 }
 
